@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 18, 2023 at 09:43 AM
+-- Generation Time: Sep 19, 2023 at 09:21 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -39,7 +39,31 @@ CREATE TABLE `courses` (
 --
 
 INSERT INTO `courses` (`id`, `name`, `duration`, `created_at`) VALUES
-(6, 'Web Programming', '4 Months', '2023-09-18 06:13:11');
+(6, 'Web Programming', '4 Months', '2023-09-18 06:13:11'),
+(9, 'Digital Marketing', '2 Months', '2023-09-19 06:22:21'),
+(10, 'Graphic Designing', '2 Months', '2023-09-19 06:22:25');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `registrations`
+--
+
+CREATE TABLE `registrations` (
+  `id` int(11) NOT NULL,
+  `student_id` int(11) NOT NULL,
+  `course_id` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `registrations`
+--
+
+INSERT INTO `registrations` (`id`, `student_id`, `course_id`, `created_at`) VALUES
+(1, 3, 6, '2023-09-19 06:30:00'),
+(2, 5, 10, '2023-09-19 07:09:02'),
+(4, 3, 9, '2023-09-19 07:18:38');
 
 -- --------------------------------------------------------
 
@@ -60,7 +84,8 @@ CREATE TABLE `students` (
 
 INSERT INTO `students` (`id`, `name`, `email`, `created_at`) VALUES
 (1, 'Uzair Farooq', 'uzair@gmail.com', '2023-09-18 06:51:15'),
-(3, 'Waleed Khan', 'waleed@gmail.com', '2023-09-18 06:54:32');
+(3, 'Waleed Khan', 'waleed@gmail.com', '2023-09-18 06:54:32'),
+(5, 'Ali', 'ali@gmail.com', '2023-09-19 06:21:11');
 
 -- --------------------------------------------------------
 
@@ -94,6 +119,14 @@ ALTER TABLE `courses`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `registrations`
+--
+ALTER TABLE `registrations`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `course_id` (`course_id`),
+  ADD KEY `student_id` (`student_id`);
+
+--
 -- Indexes for table `students`
 --
 ALTER TABLE `students`
@@ -115,19 +148,36 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `registrations`
+--
+ALTER TABLE `registrations`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `registrations`
+--
+ALTER TABLE `registrations`
+  ADD CONSTRAINT `registrations_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `courses` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `registrations_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

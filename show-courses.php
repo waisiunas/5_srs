@@ -60,7 +60,7 @@ require_once './partials/head.php';
 														<td><?php echo $sr++; ?></td>
 														<td><?php echo $course['name'] ?></td>
 														<td><?php echo $course['duration'] ?></td>
-														<td><?php echo $course['created_at'] ?></td>
+														<td><?php echo date("d-M-Y", strtotime($course['created_at'])); ?></td>
 														<td>
 															<a href="./edit-course.php?id=<?php echo $course['id'] ?>" class="btn btn-primary">Edit</a>
 															<a href="./delete-course.php?id=<?php echo $course['id'] ?>" class="btn btn-danger">Delete</a>

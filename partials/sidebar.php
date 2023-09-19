@@ -20,6 +20,11 @@
                     <i class="align-middle" data-feather="book"></i> <span class="align-middle">Students</span>
                 </a>
             </li>
+            <li class="sidebar-item" id="registrations-menu">
+                <a class="sidebar-link" href="./show-registrations.php">
+                    <i class="align-middle" data-feather="book"></i> <span class="align-middle">Registrations</span>
+                </a>
+            </li>
             <li class="sidebar-item" id="template-menu">
                 <a class="sidebar-link" href="./template.php">
                     <i class="align-middle" data-feather="book"></i> <span class="align-middle">Template</span>
