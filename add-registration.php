@@ -11,6 +11,8 @@ $sql = "SELECT * FROM `courses`";
 $result = $conn->query($sql);
 $courses = $result->fetch_all(MYSQLI_ASSOC);
 
+$student_id = $course_id = "";
+
 if (isset($_POST['submit'])) {
     $student_id = htmlspecialchars($_POST['student_id']);
     $course_id = htmlspecialchars($_POST['course_id']);
@@ -24,6 +26,7 @@ if (isset($_POST['submit'])) {
         $result = $conn->query($sql);
         if ($result) {
             $success = "Magic has been spelled!";
+            $student_id = $course_id = "";
         } else {
             $error = "Magic has failed to spell!";
         }
